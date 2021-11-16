@@ -16,20 +16,31 @@ def exp(num1,num2):
     num1=num1*og_num1
   sum=num1
   return sum
-process=0
 con=""
 save_value=""
 value=list()
 while con!="n":
+  process=""
   while process!="x" and process!="/" and process!="-" and process!="+" and process!="^":
     process= input("would you like to x,/,-,+,^\n>")
   numbers=input("give me two numbers\n if you would like to call on a saved value use this format\n value 'the round in which you saved the number'\n>")
   seperate=numbers.split()
-
-  if len(seperate)==3:
-    num=int(seperate[2])-1
-    seperate.insert(1,value[num])
-    seperate.remove(seperate[2])
+  for i in range(len(seperate)):
+    if seperate[i]=="value":
+      seperate.remove(seperate[i])
+      num=int((seperate[i]))-1
+      value_num=value[num]
+      seperate.insert(i , value_num)
+      seperate.remove(seperate[i+1])
+      break
+  for i in range (len(seperate)):
+      if seperate[i]=="value":
+        seperate.remove(seperate[i])
+        num=int((seperate[i]))-1
+        value_num=value[num]
+        seperate.insert(i , value_num)
+        seperate.remove(seperate[i+1])
+        break
   if process=="/":
     result1=div(int(seperate[0]),int(seperate[1]))
     save_value=result1
